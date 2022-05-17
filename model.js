@@ -11,46 +11,54 @@ class Dinosaur{
         this.weight = weight; 
     }; 
 
-    maxSize(size){ 
+    // maxSize(){ 
 
-        let maxLenght = 0;
+    //     let maxLenght = 0;
                 
-        for (const sample of this.size) {
+    //     for (const sample of this.size) {
                     
-            if (maxLenght < sample) {
-                maxLenght = sample;
-            }
-        } 
+    //         if (maxLenght < sample) {
+    //             maxLenght = sample;
+    //         }
+    //     } 
             
-        return maxLenght;
-    } 
+    //     return maxLenght;
+    // } 
 
-    maxWeight(weight){ 
+    // maxWeight(){ 
 
-        let maxW = 0;
+    //     let maxW = 0;
                 
-        for (const sample of this.weight) {
+    //     for (const sample of this.weight) {
                     
-            if (maxW < sample) {
-                maxW = sample;
-            }
-        } 
+    //         if (maxW < sample) {
+    //             maxW = sample;
+    //         }
+    //     } 
             
-        return maxW;
-    } 
+    //     return maxW;
+    // } 
 
     toString(){ 
         
-        const diet = this.diet === 'c' ? 'carnivore' : 'herbivore'; 
+        // const diet = this.diet === 'c' ? 'carnivore' : 'herbivore'; 
     
         const dinoString = 'Name: ' + this.name + '\n' + 
                               'Family: ' + this.family + '\n' + 
-                              'Timeline: ' + this.timeline + '\n' + 
+                              'Timeline: ' + this.timeline + ' mya' + '\n' + 
                               'Diffusion: ' + this.diffusion + '\n'+  
-                              'diet: ' + diet + '\n' + 
-                              'size: ' + this.maxSize() + ' m' + '\n' + 
-                              'Weight: ' + this.maxWeight() + ' t';
+                              'diet: ' + this.diet + '\n' + 
+                              'size: ' + this.size + ' m' + '\n' + 
+                              'Weight: ' + this.weight + ' t';
         return dinoString;
     }
 
+} 
+
+function dinosaurFactory(obj) {
+    //  se ha obj.author è Book, senno Magazine; 
+    return new Dinosaur(obj.name, obj.family, obj.timeline, obj.diffusion, obj.diet, obj.size, obj.weight);
 }
+
+exports.Dinosaur = Dinosaur; 
+exports.dinosaurFactory = dinosaurFactory;
