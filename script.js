@@ -312,5 +312,10 @@ function tryToLoadData() {
   return dinoArray;
 } 
 
-//  aggiungere funzione delete; 
+//  aggiungere funzione per modificare studente:
+//  visualize di studneti con indice; 
+//  chiederà quale studente(indice); 
+//  richiederà di reinserire i dati in tutti i campi; 
+//  all'"ok" sovrascrive studente; 
+//  in result avrò tutti campi nuovi di studente;
 
