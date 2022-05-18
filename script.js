@@ -30,13 +30,20 @@ function startMenu() {
 } 
   
 function startMenuManager(err, result){
-    if (result.selection === '1') {
+    if (result.selection === '1') { 
+      // startMenu();
       insertDinosaur();
     } else if (result.selection === '2'){
       printDinosaur();
     } else if (result.selection === '3') {
       console.log('See You soon!');
-      process.exit(); 
+      process.exit();  
+    // } else if (result.selection === '3') {
+    //   visualizeDinosaurs();
+    //   process.exit(); 
+    // } else if (result.selection === '3') {
+    //   visualizeDinosaurs();
+    //   process.exit(); 
     } else {
       console.log('Invalid option!');
       startMenu();
@@ -110,6 +117,77 @@ function startMenuManager(err, result){
     }
 } 
 
+//  finzopni di ricerca:
+// function searchDinosaur() {
+//   const schema = { 
+//     properties: { 
+//       searchWord: { 
+//         description: "insert word to search";
+//       }
+//     }
+//   } 
+
+//   prompt.get(schema, executeSearch);
+// } 
+
+// function executeSearch(err, result) {
+  
+//   const tempArray = []; 
+
+//   for (const dinosaur of dinosaurArray) { 
+    
+//     const foundInName = dinosaur.name.toLowerCase().includes(result.searchWord.toLowerCase()); 
+//     const foundInFamily = dinosaur.family.toLowerCase().includes(result.searchWord.toLowerCase());
+
+//     if ( foundInName || foundInFamily) {
+//       tempArray.push(dinosaur);
+//     } 
+//   } 
+
+//   visualizeDinosaurs(tempArray); 
+//   startMenu();
+// } 
+
+//  funzioe per rimuovere dinosauri:
+// function removeDinosaur() {
+//   console.log("ecco gli studenti attualmente registrati: "); 
+//   visualizeDinosaurs(dinosaurArray); 
+
+//   const schema = { 
+//     properties: { 
+//       selectedIndex: { 
+//         description: "Inserisci numero dello studente da eliminare";
+//       }
+//     }
+//   } 
+
+//   prompt.get(schema, executeRemoveDinosaur); 
+// } 
+
+// function executeRemoveDinosaur(err, res) {
+  
+//   const dinoIndex = parseInt(res.selectedIndex); 
+  
+//   if (dinoIndex === NaN) {
+//     startMenu(); 
+//     return;
+//   }
+  
+//   const index = dinoIndex - 1; 
+
+//   const isInArray = index >= 0 && index < dinosaurArray.length; 
+
+//   if (isInArray) {
+//     dinosaurArray.splice(index, 1); 
+//     tryToSaveData();
+//     startMenu()
+//   } else { 
+//     console.log("indice non trovato!"); 
+//     startMenu(); 
+//     return;
+//   }
+// }
+
 function printDinosaur() {
   console.log('Choose an option:');
   console.log('1) Standard order;');
@@ -171,15 +249,19 @@ function printArrayOrderedBySize(){
 
 function compareDinosByPrice(d1, d2){
   return d1.timeline - d2.timeline;
-}
+} 
 
-function printArray(arrayToPrint){
+//       visualizeDinosaurs(arrayToVisualize)
+function printArray(arrayToPrint){ 
 
-for (const d of arrayToPrint) {
-  console.log(d.toString());
-  console.log('-----------------------');
-}
-
+//                    arrayToVisualize
+  for (let i = 0; i < arrayToPrint.length; i++) {
+    const d = arrayToPrint[i]; 
+//  const dinoIndex = i + 1; assegno indice univoco a dinosauri;
+//              dinoIndex +  ") " + d.toString()
+    console.log(d.toString());
+    console.log('-----------------------');
+  }
 } 
 
 function tryToLoadData() {
@@ -223,13 +305,12 @@ function tryToLoadData() {
   } 
 
   // for (const obj of array) {
-  //   const dinosaur = model.dinosaurFactory(obj); 
+  //   const dinosaur = model.Dinosaur.createDinosaurFromObject(obj); 
   //   dinoArray.push(dinosaur);
   // }
 
   return dinoArray;
 } 
 
-//  aggiungere funzione search; 
 //  aggiungere funzione delete; 
 
