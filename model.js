@@ -4,6 +4,10 @@ class Dinosaur{
     //     c: 'carnivorous', 
     //     h: 'herbivorous', 
     //     o: 'omnivorous';
+    // } 
+
+    // static createDinoFromObject(obj){ 
+    //     return new Dinosaur(obj.name, obj.family, obj.timeline, obj.diffusion, obj.diet, obj.size, obj.weight);
     // }
 
     constructor (name, family, timeline, diffusion, diet, size, weight){ 
@@ -49,13 +53,13 @@ class Dinosaur{
         
         // const diet = this.diet === 'c' ? 'carnivore' : 'herbivore'; 
     
-        const dinoString = 'Name: ' + this.name + '\n' + 
-                              'Family: ' + this.family + '\n' + 
-                              'Timeline: ' + this.timeline + ' mya' + '\n' + 
-                              'Diffusion: ' + this.diffusion + '\n'+  
-                              'diet: ' + this.diet + '\n' + 
-                              'size: ' + this.size + ' m' + '\n' + 
-                              'Weight: ' + this.weight + ' t';
+        const dinoString = 'Name: ' + this.name + ';' + '\n' + 
+                              'Family: ' + this.family + ';' + '\n' + 
+                              'Timeline: ' + this.timeline + ' mya' + ';' + '\n' + 
+                              'Diffusion: ' + this.diffusion + ';' + '\n'+  
+                              'diet: ' + this.diet + ';' + '\n' + 
+                              'size: ' + this.size + ' m' + ';' + '\n' + 
+                              'Weight: ' + this.weight + ' t' + '.' ;
         return dinoString;
     }
 

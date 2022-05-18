@@ -2,24 +2,26 @@ const prompt = require('prompt');
 const model = require('./model.js'); 
 const fs = require('fs'); 
 
-const dinosaurArray = loadData(); 
+const dinosaurArray = tryToLoadData(); 
 
-console.log('benvenuto in dinosaur manager!')
+console.log('Welcome to Dinosaur Manager!');
 
 startMenu();
 
 function startMenu() {
-  console.log('sono disponibili tre opzioni');
-  console.log('1) aggiungi dinosauro');
-  console.log('2) lista dinosauri'); 
-  console.log('3) esci');
+  console.log("Choose an option:");
+  console.log('1) Add dinosaur;');
+  console.log('2) Show dinosaur list;'); 
+  // console.log('3) trova dinosauro'); 
+  // console.log('4) azzera lista'); 
+  console.log('3) Exit.');
 
   prompt.start();
 
   const schema = {
     properties: {
       selection: {
-        description: 'Seleziona una delle opzioni',
+        description: 'Choose an option',
       }
     }
   };
@@ -33,10 +35,10 @@ function startMenuManager(err, result){
     } else if (result.selection === '2'){
       printDinosaur();
     } else if (result.selection === '3') {
-      console.log('Grazie e a Presto!')
+      console.log('See You soon!');
       process.exit(); 
     } else {
-      console.log('selezione non disponibile');
+      console.log('Invalid option!');
       startMenu();
     }
   }
@@ -48,25 +50,28 @@ function startMenuManager(err, result){
     const schema = {
       properties: {
         name: {
-          description: 'inserisci il nome', 
+          description: 'Insert name', 
         },
           family: {
-          description: 'inserisci famiglia',
+          description: 'Insert family',
         },
           timeline: {
-          description: 'inserisci periodo (mya)', 
+          description: 'Insert timeline (mya)', 
         }, 
           diffusion: {
-            description: 'inserisci area',
+            description: 'Insert diffusion',
         }, 
           diet: {
-            description: 'inserisci dieta',
+            description: 'Insert diet',
         }, 
+        //   diet: {
+        //     description: 'Insert diet ("c" => carnivorous, "h" => herbivorous, "o" => omnivorous)',
+        // }, 
           size: {
-              description: 'inserisci dimensioni',
+              description: 'Insert size (m)',
         }, 
           weight: {
-            description: 'inserisci peso', 
+            description: 'Insert weight (t)', 
         } 
       }
     };
@@ -75,39 +80,47 @@ function startMenuManager(err, result){
     
   }
   
-  function insertDinosaurManager(err, result){
+  function insertDinosaurManager(err, result){ 
+
+    // if (result.diet === "c") {
+    //   diet = model.Dinosaur.DIET.carnivorous;
+    // } else if (result.diet === "h") {
+    //   diet = model.Dinosaur.DIET.herbivorous;
+    // } else { 
+    //   diet = model.Dinosaur.DIET.omnivorous;
+    // }
   
-    const dino = new model.Dinosaur(result.name, result.family, parseInt(result.timeline), result.diffusion, result.diet, parseInt(result.size), parseInt(result.weight));
-  
+    const dino = new model.Dinosaur(result.name, result.family, result.timeline, result.diffusion, result.diet, parseInt(result.size), parseInt(result.weight));
+//                                                                                                     diet
     dinosaurArray.push(dino);
   
-    saveData(dinosaurArray); 
+    tryToSaveData(dinosaurArray); 
   
     startMenu();
   } 
 
-  function saveData(arrayToSave) {
+  function tryToSaveData(arrayToSave) {
     
     const jsonArray = JSON.stringify(arrayToSave); 
 
     try {
       fs.writeFileSync('./data_file.json', jsonArray); 
     } catch (error) {
-      console.log('impossibile salvare');
+      console.log("Can't save!");
     }
 } 
 
 function printDinosaur() {
-  console.log('sono disponibili tre opzioni');
-  console.log('1) lista in ordine di inserimento');
-  console.log('2) lista in ordine alfabetico');
-  console.log('3) lista in ordine di lunghezza');
-  console.log('4) torna al menù principale');
+  console.log('Choose an option:');
+  console.log('1) Standard order;');
+  console.log('2) Alphabetical order;');
+  console.log('3) Order by size;');
+  console.log('4) Back to main menu.');
 
   const schema = {
     properties: {
       selection: {
-        description: 'Seleziona una delle opzioni',
+        description: 'Choose an option',
       }
     }
   };
@@ -128,7 +141,7 @@ function printMenuManager(err, result) {
   } else if (result.selection === '4') { 
     startMenu();
   } else {
-    console.log('selezione non disponibile');
+    console.log('Invalid option!');
     startMenu();
   }
 } 
@@ -164,13 +177,29 @@ function printArray(arrayToPrint){
 
 for (const d of arrayToPrint) {
   console.log(d.toString());
-  console.log('----------------------')
+  console.log('-----------------------');
 }
 
 } 
 
-function loadData() {
-  let jsonArray;
+function tryToLoadData() {
+  
+  let jsonArray; 
+  // let array; 
+
+  // try {
+  //   jsonArray = fs.readFileSync('./data_file.json', 'utf-8'); 
+  //   array = JSON.parse(jsonArray);
+  // } catch (error) {
+  //   array = '[]';
+  // } 
+//  posso canellare quindi : 
+// jsonArray = jsonArray.trim(); 
+// let array = []; 
+
+// if (jsonArray) {
+//   array = JSON.parse(jsonArray); 
+// }
 
   try {
     jsonArray = fs.readFileSync('./data_file.json', 'utf-8'); 
@@ -180,6 +209,7 @@ function loadData() {
 
   jsonArray = jsonArray.trim(); 
   let array = []; 
+  
   if (jsonArray) {
     array = JSON.parse(jsonArray); 
   }
@@ -190,7 +220,12 @@ function loadData() {
   for (const obj of array) {
     const dinosaur = model.dinosaurFactory(obj); 
     dinoArray.push(dinosaur);
-  }
+  } 
+
+  // for (const obj of array) {
+  //   const dinosaur = model.dinosaurFactory(obj); 
+  //   dinoArray.push(dinosaur);
+  // }
 
   return dinoArray;
 } 

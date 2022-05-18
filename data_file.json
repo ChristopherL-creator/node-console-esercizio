@@ -25,5 +25,23 @@
         "diet": "herbivorous",
         "size": 35,
         "weight": 75
+    },
+    {
+        "name": "Tirannosaurus rex",
+        "family": "Tirannosauroidea",
+        "timeline": 80,
+        "diffusion": "laramidia",
+        "diet": "c",
+        "size": 12,
+        "weight": 10
+    },
+    {
+        "name": "velociraptor",
+        "family": "dromaeosauridae",
+        "timeline": "70",
+        "diffusion": "mongolia",
+        "diet": "carnivorous",
+        "size": 2,
+        "weight": 0
     }
 ]
