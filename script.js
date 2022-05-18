@@ -34,11 +34,8 @@ function startMenuManager(err, result){
     } else if (result.selection === '2'){
       printDinosaur();
     } else if (result.selection === '3') {
-      ereaseDinosaurArray();
-      process.exit(); 
-    } else if (result.selection === '4') {
       console.log('Grazie e a Presto!')
-      process.exit();
+      process.exit(); 
     } else {
       console.log('selezione non disponibile');
       startMenu();
@@ -58,7 +55,7 @@ function startMenuManager(err, result){
           description: 'inserisci famiglia',
         },
           timeline: {
-          description: 'inserisci periodo', 
+          description: 'inserisci periodo (mya)', 
         }, 
           diffusion: {
             description: 'inserisci area',
@@ -198,4 +195,7 @@ function loadData() {
 
   return dinoArray;
 } 
+
+//  aggiungere funzione search; 
+//  aggiungere funzione delete; 
 

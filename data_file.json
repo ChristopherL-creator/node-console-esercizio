@@ -16,5 +16,14 @@
         "diet": "carnivorous",
         "size": 11,
         "weight": 7
+    },
+    {
+        "name": "mamenchisaurus",
+        "family": "mamenchisauridae",
+        "timeline": 145,
+        "diffusion": "china",
+        "diet": "herbivorous",
+        "size": 35,
+        "weight": 75
     }
 ]
