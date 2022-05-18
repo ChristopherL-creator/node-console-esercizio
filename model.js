@@ -1,14 +1,14 @@
 class Dinosaur{ 
 
-    // static DIET = { 
-    //     c: 'carnivorous', 
-    //     h: 'herbivorous', 
-    //     o: 'omnivorous';
-    // } 
+    static DIET = { 
+        c: 'carnivorous', 
+        h: 'herbivorous', 
+        o: 'omnivorous'
+    } 
 
-    // static createDinoFromObject(obj){ 
-    //     return new Dinosaur(obj.name, obj.family, obj.timeline, obj.diffusion, obj.diet, obj.size, obj.weight);
-    // }
+    static createDinosaurFromObject(obj){ 
+        return new Dinosaur(obj.name, obj.family, obj.timeline, obj.diffusion, obj.diet, obj.size, obj.weight);
+    }
 
     constructor (name, family, timeline, diffusion, diet, size, weight){ 
 
@@ -19,7 +19,7 @@ class Dinosaur{
         this.diet = diet; 
         this.size = size; 
         this.weight = weight; 
-    }; 
+    } 
 
     // maxSize(){ 
 
@@ -50,24 +50,16 @@ class Dinosaur{
     // } 
 
     toString(){ 
-        
-        // const diet = this.diet === 'c' ? 'carnivore' : 'herbivore'; 
     
         const dinoString = 'Name: ' + this.name + ';' + '\n' + 
                               'Family: ' + this.family + ';' + '\n' + 
                               'Timeline: ' + this.timeline + ' mya' + ';' + '\n' + 
                               'Diffusion: ' + this.diffusion + ';' + '\n'+  
-                              'diet: ' + this.diet + ';' + '\n' + 
-                              'size: ' + this.size + ' m' + ';' + '\n' + 
+                              'Diet: ' + this.diet + ';' + '\n' + 
+                              'Size: ' + this.size + ' m' + ';' + '\n' + 
                               'Weight: ' + this.weight + ' t' + '.' ;
         return dinoString;
     }
-
 } 
 
-function dinosaurFactory(obj) {
-    return new Dinosaur(obj.name, obj.family, obj.timeline, obj.diffusion, obj.diet, obj.size, obj.weight);
-}
-
 exports.Dinosaur = Dinosaur; 
-exports.dinosaurFactory = dinosaurFactory;
