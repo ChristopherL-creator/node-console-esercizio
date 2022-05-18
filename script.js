@@ -8,7 +8,6 @@ console.log('benvenuto in dinosaur manager!')
 
 startMenu();
 
-
 function startMenu() {
   console.log('sono disponibili tre opzioni');
   console.log('1) aggiungi dinosauro');

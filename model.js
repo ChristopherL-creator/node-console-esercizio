@@ -1,5 +1,11 @@
 class Dinosaur{ 
 
+    // static DIET = { 
+    //     c: 'carnivorous', 
+    //     h: 'herbivorous', 
+    //     o: 'omnivorous';
+    // }
+
     constructor (name, family, timeline, diffusion, diet, size, weight){ 
 
         this.name = name; 
@@ -56,7 +62,6 @@ class Dinosaur{
 } 
 
 function dinosaurFactory(obj) {
-    //  se ha obj.author è Book, senno Magazine; 
     return new Dinosaur(obj.name, obj.family, obj.timeline, obj.diffusion, obj.diet, obj.size, obj.weight);
 }
 
