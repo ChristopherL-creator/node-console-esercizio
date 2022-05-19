@@ -77,7 +77,7 @@ function startMenuManager(err, result){
             description: 'Insert weight (t)' 
         } 
       }
-    };
+    }
   
     prompt.get(schema, insertDinosaurManager);
     
@@ -86,11 +86,11 @@ function startMenuManager(err, result){
   function insertDinosaurManager(err, result){ 
     let diet;
     if (result.diet === 'c') {
-      diet = model.Dinosaur.DIET.carnivorous;
+      diet = model.Dinosaur.DIET.c;
     } else if (result.diet === 'h') {
-      diet = model.Dinosaur.DIET.herbivorous;
+      diet = model.Dinosaur.DIET.h;
     } else { 
-      diet = model.Dinosaur.DIET.omnivorous;
+      diet = model.Dinosaur.DIET.o;
     }
   
     const dino = new model.Dinosaur(result.name, result.family, result.timeline, result.diffusion, diet, parseInt(result.size), parseInt(result.weight));
@@ -236,7 +236,7 @@ function executeUpdateDinosaur(error, result) {
     dinosaurArray[index].family = result.selectedFamily; 
     dinosaurArray[index].timeline = result.selectedTimeline; 
     dinosaurArray[index].diffusion = result.selectedDiffusion; 
-    dinosaurArray[index].diet = result.selectedDiet; 
+    dinosaurArray[index].diet = result.selectedDiet === "c" ? model.Dinosaur.DIET.c : result.selectedDiet === "h" ? model.Dinosaur.DIET.h :  model.Dinosaur.DIET.o;
     dinosaurArray[index].size = result.selectedSize; 
     dinosaurArray[index].weight = result.selectedWeight;
     tryToSaveData(); 
@@ -300,13 +300,13 @@ function printArrayOrderedBySize(){
 
   const copy = [...dinosaurArray];
 
-  copy.sort(compareDinosByPrice);
+  copy.sort(compareDinosBySize);
 
   visualizeDinosaurs(copy);
 } 
 
-function compareDinosByPrice(d1, d2){
-  return d1.timeline - d2.timeline;
+function compareDinosBySize(d1, d2){
+  return d1.size - d2.size;
 } 
 
 //       
@@ -343,11 +343,4 @@ function tryToLoadData() {
 
   return dinoArray;
 } 
-
-//  aggiungere funzione per modificare studente:
-//  visualize di studneti con indice; 
-//  chiederà quale studente(indice); 
-//  richiederà di reinserire i dati in tutti i campi; 
-//  all'"ok" sovrascrive studente; 
-//  in result avrò tutti campi nuovi di studente;
 
