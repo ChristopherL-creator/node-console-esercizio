@@ -178,7 +178,7 @@ function executeRemoveDinosaur(err, res) {
     tryToSaveData();
     startMenu()
   } else { 
-    console.log("Index not found!"); 
+    console.log("Dinosaur not found!"); 
     startMenu(); 
     return;
   }
@@ -191,28 +191,28 @@ function updateDinosaur() {
   const schema = {
     properties: {
       selectedIndex: {
-        description: 'Insert dinosaur index number'
+        description: 'Insert dinosaur index number (leave empty to not edit)'
       },
       selectedName: {
-          description: 'Insert dinosaur name'
+          description: 'Insert dinosaur name (leave empty to not edit)'
         }, 
       selectedFamily: {
-          description: 'Insert dinosaur family'
+          description: 'Insert dinosaur family (leave empty to not edit)'
       },  
       selectedTimeline: {
-          description: 'Insert dinosaur timeline (mya)'
+          description: 'Insert dinosaur timeline (mya) (leave empty to not edit)'
       },  
       selectedDiffusion: {
-          description: 'Insert dinosaur diffusion'
+          description: 'Insert dinosaur diffusion (leave empty to not edit)'
       },   
       selectedDiet: {
-        description: 'Insert dinosaur diet ("c" => carnivorous, "h" => herbivorous, "o" => omnivorous)'
+        description: 'Insert dinosaur diet ("c" => carnivorous, "h" => herbivorous, "o" => omnivorous) (leave empty to not edit)'
       },  
       selectedSize: {
-        description: 'Insert dinosaur size (m)'
+        description: 'Insert dinosaur size (m) (leave empty to not edit)'
       }, 
       selectedWeight: {
-        description: 'Insert dinosaur wieght (t)'
+        description: 'Insert dinosaur wieght (t) (leave empty to not edit)'
       } 
     }
   }
@@ -233,16 +233,21 @@ function executeUpdateDinosaur(error, result) {
 
   if (isInArray) { 
     dinosaurArray[index].name = result.selectedName; 
+    // if (result.selectedName) {
+    //   dinosaur.name = result.selectedName;
+    // } 
+    // dinosaurArray[index].name = result.selectedName ? result.selectedName : dinosaur.selectedName; 
+    // dinosaurArray[index].name = result.selectedName || dinosaur.selectedName;
     dinosaurArray[index].family = result.selectedFamily; 
     dinosaurArray[index].timeline = result.selectedTimeline; 
     dinosaurArray[index].diffusion = result.selectedDiffusion; 
-    dinosaurArray[index].diet = result.selectedDiet === "c" ? model.Dinosaur.DIET.c : result.selectedDiet === "h" ? model.Dinosaur.DIET.h :  model.Dinosaur.DIET.o;
+    dinosaurArray[index].diet = result.selectedDiet === "c" ? model.Dinosaur.DIET.c : result.selectedDiet === "h" ? model.Dinosaur.DIET.h : model.Dinosaur.DIET.o;
     dinosaurArray[index].size = result.selectedSize; 
     dinosaurArray[index].weight = result.selectedWeight;
     tryToSaveData(); 
     startMenu();
   } else {
-    console.log('Index not found!');
+    console.log('Dinosaur not found!');
     startMenu();
   }
 }
@@ -344,3 +349,4 @@ function tryToLoadData() {
   return dinoArray;
 } 
 
+//  per modificare un solo elemento
